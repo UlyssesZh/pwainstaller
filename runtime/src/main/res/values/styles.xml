@@ -1,12 +1,12 @@
 <resources>
-    <color name="web_background">#ff010203</color>
-    <color name="web_theme">#ff040506</color>
-    <style name="Theme.WebApp.Base" parent="android:style/Theme.Material.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/web_splash</item>
-        <!-- Native dialog controls need the platform's contrasting accent. A
-             website theme color (often white) is only suitable for page chrome. -->
-        <item name="android:statusBarColor">@color/web_theme</item>
-        <item name="android:navigationBarColor">@color/web_background</item>
-    </style>
-    <style name="Theme.WebApp" parent="Theme.WebApp.Base" />
+	<color name="web_background">#ff010203</color>
+	<color name="web_theme">#ff040506</color>
+	<style name="Theme.WebApp.Base" parent="android:style/Theme.Material.Light.NoActionBar">
+		<item name="android:windowBackground">@drawable/web_splash</item>
+		<!-- Native dialog controls need the platform's contrasting accent. A
+			 website theme color (often white) is only suitable for page chrome. -->
+		<item name="android:statusBarColor">@color/web_theme</item>
+		<item name="android:navigationBarColor">@color/web_background</item>
+	</style>
+	<style name="Theme.WebApp" parent="Theme.WebApp.Base" />
 </resources>

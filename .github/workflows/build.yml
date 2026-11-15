@@ -28,7 +28,7 @@ jobs:
           cmdline-tools-version: '15859902'
 
       - name: Build
-        run: ./gradlew --no-daemon build
+        run: ./gradlew --no-daemon :app:assembleRelease
 
       - name: Sign
         env:

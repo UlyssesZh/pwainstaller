@@ -1,8 +1,8 @@
 <resources>
-    <style name="Theme.WebApp" parent="Theme.WebApp.Base">
-        <item name="android:windowBackground">@color/web_background</item>
-        <item name="android:windowSplashScreenBackground">@color/web_background</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/web_launcher</item>
-        <item name="android:windowSplashScreenIconBackgroundColor">@color/web_background</item>
-    </style>
+	<style name="Theme.WebApp" parent="Theme.WebApp.Base">
+		<item name="android:windowBackground">@color/web_background</item>
+		<item name="android:windowSplashScreenBackground">@color/web_background</item>
+		<item name="android:windowSplashScreenAnimatedIcon">@mipmap/web_launcher</item>
+		<item name="android:windowSplashScreenIconBackgroundColor">@color/web_background</item>
+	</style>
 </resources>

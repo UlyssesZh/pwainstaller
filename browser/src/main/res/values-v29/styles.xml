@@ -1,12 +1,12 @@
 <resources>
-    <!-- WebView reads this attribute independently of uiMode. Keep native chrome
-         colors intact and let websites provide their own light/dark styling. -->
-    <style name="BrowserColorScheme.Light" parent="">
-        <item name="android:isLightTheme">true</item>
-        <item name="android:forceDarkAllowed">false</item>
-    </style>
-    <style name="BrowserColorScheme.Dark" parent="">
-        <item name="android:isLightTheme">false</item>
-        <item name="android:forceDarkAllowed">false</item>
-    </style>
+	<!-- WebView reads this attribute independently of uiMode. Keep native chrome
+		 colors intact and let websites provide their own light/dark styling. -->
+	<style name="BrowserColorScheme.Light" parent="">
+		<item name="android:isLightTheme">true</item>
+		<item name="android:forceDarkAllowed">false</item>
+	</style>
+	<style name="BrowserColorScheme.Dark" parent="">
+		<item name="android:isLightTheme">false</item>
+		<item name="android:forceDarkAllowed">false</item>
+	</style>
 </resources>

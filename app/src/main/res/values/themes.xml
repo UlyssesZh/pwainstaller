@@ -1,8 +1,8 @@
 <resources>
-    <color name="launcher_background">#356859</color>
-    <style name="Theme.PwaInstaller" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#356859</item>
-        <item name="colorSecondary">#52645D</item>
-        <item name="android:fontFamily">sans</item>
-    </style>
+	<color name="launcher_background">#356859</color>
+	<style name="Theme.PwaInstaller" parent="Theme.Material3.DayNight.NoActionBar">
+		<item name="colorPrimary">#356859</item>
+		<item name="colorSecondary">#52645D</item>
+		<item name="android:fontFamily">sans</item>
+	</style>
 </resources>

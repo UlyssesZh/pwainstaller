@@ -1,34 +1,34 @@
 <resources>
-    <string name="loading_page">正在加载网页</string>
-    <string name="context_open_link">打开链接</string>
-    <string name="context_open_browser">在浏览器中打开链接</string>
-    <string name="context_copy_link">复制链接</string>
-    <string name="context_copy_link_text">复制链接文本</string>
-    <string name="context_share_link">分享链接</string>
-    <string name="context_open_image">打开图片</string>
-    <string name="context_copy_image">复制图片</string>
-    <string name="context_copy_image_address">复制图片地址</string>
-    <string name="context_download_image">下载图片</string>
-    <string name="context_share_image">分享图片</string>
-    <string name="context_image">图片</string>
-    <string name="context_copied">已复制</string>
-    <string name="context_preparing_image">正在准备图片…</string>
-    <string name="context_image_saved">图片已保存</string>
-    <string name="context_image_unavailable">无法获取图片。</string>
-    <string name="go">前往</string><string name="back">返回</string><string name="refresh">刷新</string>
-    <string name="done">使用登录 Cookie</string><string name="address">网址</string><string name="open_external">在浏览器中打开</string>
-    <string name="permission_title">网站权限</string><string name="permission_message">允许 %1$s 使用%2$s吗？</string>
-    <string name="camera">相机</string><string name="microphone">麦克风</string><string name="location">位置</string>
-    <string name="allow">允许</string><string name="deny">拒绝</string><string name="download">下载</string>
-    <string name="error">无法打开：%1$s</string><string name="download_started">已开始下载</string>
-    <string name="popup">打开链接</string>
-    <string name="http_auth">登录 %1$s（%2$s）</string>
-    <string name="username">用户名</string><string name="password">密码</string><string name="sign_in">登录</string>
-    <string name="browser_history">后退历史</string>
-    <string name="browser_history_empty">没有更早的页面</string>
-    <string name="browser_forward">前进</string>
-    <string name="browser_download_page">下载</string>
-    <string name="browser_print_page">打印</string>
-    <string name="browser_download_failed">无法保存此页面</string>
-    <string name="browser_page_saved">页面已保存</string>
+	<string name="loading_page">正在加载网页</string>
+	<string name="context_open_link">打开链接</string>
+	<string name="context_open_browser">在浏览器中打开链接</string>
+	<string name="context_copy_link">复制链接</string>
+	<string name="context_copy_link_text">复制链接文本</string>
+	<string name="context_share_link">分享链接</string>
+	<string name="context_open_image">打开图片</string>
+	<string name="context_copy_image">复制图片</string>
+	<string name="context_copy_image_address">复制图片地址</string>
+	<string name="context_download_image">下载图片</string>
+	<string name="context_share_image">分享图片</string>
+	<string name="context_image">图片</string>
+	<string name="context_copied">已复制</string>
+	<string name="context_preparing_image">正在准备图片…</string>
+	<string name="context_image_saved">图片已保存</string>
+	<string name="context_image_unavailable">无法获取图片。</string>
+	<string name="go">前往</string><string name="back">返回</string><string name="refresh">刷新</string>
+	<string name="done">使用登录 Cookie</string><string name="address">网址</string><string name="open_external">在浏览器中打开</string>
+	<string name="permission_title">网站权限</string><string name="permission_message">允许 %1$s 使用%2$s吗？</string>
+	<string name="camera">相机</string><string name="microphone">麦克风</string><string name="location">位置</string>
+	<string name="allow">允许</string><string name="deny">拒绝</string><string name="download">下载</string>
+	<string name="error">无法打开：%1$s</string><string name="download_started">已开始下载</string>
+	<string name="popup">打开链接</string>
+	<string name="http_auth">登录 %1$s（%2$s）</string>
+	<string name="username">用户名</string><string name="password">密码</string><string name="sign_in">登录</string>
+	<string name="browser_history">后退历史</string>
+	<string name="browser_history_empty">没有更早的页面</string>
+	<string name="browser_forward">前进</string>
+	<string name="browser_download_page">下载</string>
+	<string name="browser_print_page">打印</string>
+	<string name="browser_download_failed">无法保存此页面</string>
+	<string name="browser_page_saved">页面已保存</string>
 </resources>
