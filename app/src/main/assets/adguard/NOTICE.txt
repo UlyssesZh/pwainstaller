@@ -1,0 +1,14 @@
+AdGuard ExtendedCSS 2.3.0 and Scriptlets 2.5.1
+Copyright (c) 2026 AdGuard. Licensed under GPL-3.0.
+Upstream source distributions (including original source):
+https://registry.npmjs.org/@adguard/extended-css/-/extended-css-2.3.0.tgz
+https://registry.npmjs.org/@adguard/scriptlets/-/scriptlets-2.5.1.tgz
+https://github.com/AdguardTeam/ExtendedCss
+https://github.com/AdguardTeam/Scriptlets
+
+core-js-bundle 3.51.0: MIT; see core-js.txt for copyright and license.
+Source: https://registry.npmjs.org/core-js-bundle/-/core-js-bundle-3.51.0.tgz
+
+Helpers are transpiled for Chrome 37 using Babel. The scriptlet bundle contains
+only the implementations requested by this web app's rules. The WebView runner
+is original PWA Installer code under MIT. See adguard.txt for GPL-3.0 terms.

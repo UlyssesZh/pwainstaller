@@ -1,0 +1,12 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="add_web_app" android:enabled="true" android:icon="@drawable/ic_add"
+        android:shortcutShortLabel="@string/add_app" android:shortcutLongLabel="@string/add_app">
+        <intent android:action="io.github.ulysseszh.pwainstaller.ADD_WEB_APP"
+            android:targetPackage="io.github.ulysseszh.pwainstaller" android:targetClass="io.github.ulysseszh.pwainstaller.AddAppActivity" />
+    </shortcut>
+    <shortcut android:shortcutId="reinstall_all" android:enabled="true" android:icon="@drawable/ic_refresh"
+        android:shortcutShortLabel="@string/reinstall_all" android:shortcutLongLabel="@string/reinstall_all">
+        <intent android:action="io.github.ulysseszh.pwainstaller.REINSTALL_ALL"
+            android:targetPackage="io.github.ulysseszh.pwainstaller" android:targetClass="io.github.ulysseszh.pwainstaller.MainActivity" />
+    </shortcut>
+</shortcuts>

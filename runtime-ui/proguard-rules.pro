@@ -1,0 +1,1 @@
+-keep class io.github.ulysseszh.pwainstaller.runtime.MaterialBrowserUi { public <init>(); public *; }

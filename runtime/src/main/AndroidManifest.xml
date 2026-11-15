@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <queries><package android:name="io.github.ulysseszh.pwainstaller" /></queries>
+    <!-- This shell registers no dynamic receivers; a shared template permission would collide. -->
+    <permission android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" tools:node="remove" />
+    <uses-permission android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" tools:node="remove" />
+    <application android:label="PWA_TEMPLATE_LABEL" android:icon="@mipmap/web_launcher" android:roundIcon="@mipmap/web_launcher_round"
+        android:theme="@style/Theme.WebApp" android:allowBackup="false" android:fullBackupContent="false" android:dataExtractionRules="@xml/data_extraction_rules"
+        android:usesCleartextTraffic="true" android:supportsRtl="true" android:enableOnBackInvokedCallback="true">
+        <!-- Generated apps have no startup initializers; template authorities must not leak. -->
+        <provider android:name="androidx.startup.InitializationProvider" tools:node="remove" />
+        <receiver android:name="androidx.profileinstaller.ProfileInstallReceiver" tools:node="remove" />
+        <activity android:name="io.github.ulysseszh.pwainstaller.runtime.WebActivity"
+            android:process=":web" android:exported="true" android:launchMode="singleTask" android:resizeableActivity="true"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|density|uiMode|navigation|touchscreen|colorMode">
+            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="pwa-template-scheme" android:host="pwa-template-host" android:pathPrefix="/pwa-template-path" />
+            </intent-filter>
+        </activity>
+        <!-- Keep launch trampolines out of the browsing task. Otherwise a later
+             identical share intent can be delivered to WebActivity and lose its data. -->
+        <activity android:name="io.github.ulysseszh.pwainstaller.runtime.FileHandlerActivity" android:exported="true"
+            android:taskAffinity="" android:excludeFromRecents="true" android:noHistory="true">
+            <intent-filter><action android:name="android.intent.action.VIEW" /><category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" android:mimeType="application/x-pwa-template" />
+            </intent-filter>
+        </activity>
+        <activity android:name="io.github.ulysseszh.pwainstaller.runtime.ShareTargetActivity" android:exported="true"
+            android:taskAffinity="" android:excludeFromRecents="true" android:noHistory="true">
+            <intent-filter><action android:name="android.intent.action.SEND" /><category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/x-pwa-template" />
+            </intent-filter>
+        </activity>
+        <provider android:name="io.github.ulysseszh.pwainstaller.runtime.DataProvider"
+            android:authorities="io.github.ulysseszh.pwainstaller.template.data" android:exported="true" />
+    </application>
+</manifest>

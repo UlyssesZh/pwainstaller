@@ -1,0 +1,4 @@
+<resources>
+    <style name="BrowserColorScheme.Light" parent="" />
+    <style name="BrowserColorScheme.Dark" parent="" />
+</resources>

@@ -1,0 +1,34 @@
+# Local Gradle, Kotlin, and Android Studio state
+.gradle/
+.kotlin/
+.idea/
+*.iml
+local.properties
+.externalNativeBuild/
+.cxx/
+
+# Generated build outputs (keep the Gradle wrapper JAR tracked)
+**/build/
+*.apk
+*.aab
+*.apks
+*.hprof
+captures/
+
+# Private signing material and local credentials
+*.jks
+*.keystore
+*.p12
+*.pfx
+keystore.properties
+signing.properties
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

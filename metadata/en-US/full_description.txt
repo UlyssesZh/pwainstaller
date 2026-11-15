@@ -1,0 +1,18 @@
+Install your favorite websites as independent Android apps. PWA Installer builds and signs APKs directly on your device, using Android System WebView to display each website.
+
+Add a website URL to fetch its web app manifest, or create and customize an app manually. Give each app its own name, icons, colors, display mode, orientation, user agent, and URL navigation rules. Import multiple icons, including SVG images, and set their maskable and monochrome purposes.
+
+Features:
+• Create, install, reinstall, and export web app APKs on your device.
+• Sign in through a temporary browser and carry its browsing data into a newly installed app.
+• Import, export, and migrate browsing data between generated apps.
+• Save and share your web app library, including actual icon data.
+• Support web manifest shortcuts, file handlers, and share targets.
+• Customize per-app adblock rules using AdGuard filter lists.
+• Choose the system package installer or silent installation through Shizuku.
+• Manage your own signing keystore and export it for safekeeping.
+• Reinstall all saved apps from the library menu.
+
+Each generated app has its own Android package, launcher icon, splash screen, and browsing data. Apps run independently of PWA Installer and use the WebView installed on your device. English and Simplified Chinese interfaces are included, with light and dark themes and dynamic colors on supported devices.
+
+Android 5.0 or newer is required. Shizuku installation requires Android 7.0 or newer, a running Shizuku service, and permission. Available web features depend on Android System WebView. Web Notifications and Push APIs are unavailable in Android WebView.
