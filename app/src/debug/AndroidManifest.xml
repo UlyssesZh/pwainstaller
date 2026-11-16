@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<application>
+		<activity android:name=".ActivityResultTestHost" android:exported="false" />
+		<activity android:name=".ActivityResultTestTarget" android:exported="false" />
 		<activity android:name=".ExternalLinkTestActivity" android:exported="true">
 			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />

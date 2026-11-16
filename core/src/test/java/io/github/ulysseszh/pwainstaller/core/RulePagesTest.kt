@@ -9,9 +9,13 @@ class RulePagesTest {
 		val pages = RulePages.split(text)
 		assertEquals(text, pages.joinToString(""))
 		assertTrue(pages.size > 1)
-		pages.forEach { page -> assertTrue(page.length <= RulePages.CHARACTERS); assertTrue(page.count { it == '\n' } <= 128) }
+		pages.forEach { page ->
+			assertTrue(page.length <= RulePages.CHARACTERS)
+			assertTrue(page.count { it == '\n' } <= 128)
+		}
 		assertEquals(listOf(""), RulePages.split(""))
 	}
+
 	@Test fun veryLongLinesAndSurrogatePairsRemainIntact() {
 		val text = "a".repeat(8191) + "🐉" + "b".repeat(12000)
 		val pages = RulePages.split(text)

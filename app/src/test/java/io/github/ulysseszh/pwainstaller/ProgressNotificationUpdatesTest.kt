@@ -13,6 +13,7 @@ class ProgressNotificationUpdatesTest {
 		updates.retainVisible(setOf(1), 1000)
 		assertEquals(mapOf(2 to "second"), updates.select(desired, 1000))
 	}
+
 	@Test fun aBurstOfEightJobsGetsAllNotificationsWithinTheUpdateBudget() {
 		val updates = ProgressNotificationUpdates<String>()
 		val desired = (1..8).associateWith { "app $it" }

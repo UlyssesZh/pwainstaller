@@ -9,9 +9,12 @@ class InstallerApplication : Application() {
 		super.onCreate()
 		DynamicColors.applyToActivitiesIfAvailable(this)
 		val manager = getSystemService(ACTIVITY_SERVICE) as android.app.ActivityManager
-		if (manager.runningAppProcesses.orEmpty().any { it.pid == android.os.Process.myPid() && it.processName == packageName })
-			{ AdblockSettings.schedule(this); signing.execute { runCatching { SigningKeys.load(this) } } }
+		if (manager.runningAppProcesses.orEmpty().any { it.pid == android.os.Process.myPid() && it.processName == packageName }) {
+			AdblockSettings.schedule(this)
+			signing.execute { runCatching { SigningKeys.load(this) } }
+		}
 	}
+
 	companion object {
 		val worker = Executors.newSingleThreadExecutor()
 		val readers = Executors.newFixedThreadPool(2)

@@ -9,17 +9,29 @@ import android.widget.Toast
 class ShareActivity : Activity() {
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
-		val url = when (intent.action) {
-			Intent.ACTION_VIEW -> SharedWebUrl.extract(intent.dataString)
-			Intent.ACTION_SEND -> SharedWebUrl.extract(intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.toString())
-				?: SharedWebUrl.extract(intent.dataString)
-				?: intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.let {
-					SharedWebUrl.extract(it.text?.toString()) ?: SharedWebUrl.extract(it.uri?.toString())
+		val url =
+			when (intent.action) {
+				Intent.ACTION_VIEW -> {
+					SharedWebUrl.extract(intent.dataString)
 				}
-			else -> null
+
+				Intent.ACTION_SEND -> {
+					SharedWebUrl.extract(intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.toString())
+						?: SharedWebUrl.extract(intent.dataString)
+						?: intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.let {
+							SharedWebUrl.extract(it.text?.toString()) ?: SharedWebUrl.extract(it.uri?.toString())
+						}
+				}
+
+				else -> {
+					null
+				}
+			}
+		if (url != null) {
+			startActivity(Intent(this, EditorActivity::class.java).putExtra("baseUrl", url))
+		} else {
+			Toast.makeText(this, R.string.invalid_shared_url, Toast.LENGTH_LONG).show()
 		}
-		if (url != null) startActivity(Intent(this, EditorActivity::class.java).putExtra("baseUrl", url))
-		else Toast.makeText(this, R.string.invalid_shared_url, Toast.LENGTH_LONG).show()
 		finish()
 	}
 }

@@ -1,0 +1,9 @@
+# Upstream bundles retain their original formatting.
+third_party/
+app/src/main/assets/adguard/extended-css.js
+app/src/main/assets/adguard/polyfills.js
+app/src/main/assets/adguard/scriptlets.json
+
+# Generated build outputs and local tooling.
+**/build/
+.gradle/

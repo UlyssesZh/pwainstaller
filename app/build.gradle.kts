@@ -6,7 +6,10 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import java.util.zip.ZipOutputStream
 
-plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
+plugins {
+	id("com.android.application")
+	id("org.jetbrains.kotlin.android")
+}
 
 android {
 	namespace = "io.github.ulysseszh.pwainstaller"
@@ -38,8 +41,11 @@ kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarg
 
 abstract class StageRuntimeTemplate : DefaultTask() {
 	@get:InputFile abstract val templateApk: RegularFileProperty
+
 	@get:InputFile abstract val browserTemplateApk: RegularFileProperty
+
 	@get:OutputDirectory abstract val outputDirectory: DirectoryProperty
+
 	@TaskAction fun stage() {
 		val destination = outputDirectory.file("runtime.apk").get().asFile
 		destination.parentFile.mkdirs()
@@ -47,12 +53,13 @@ abstract class StageRuntimeTemplate : DefaultTask() {
 		browserTemplateApk.get().asFile.copyTo(outputDirectory.file("runtime-ui.apk").get().asFile, overwrite = true)
 	}
 }
-val template = tasks.register<StageRuntimeTemplate>("copyRuntimeTemplate") {
-	dependsOn(":runtime:assembleRelease", ":runtime-ui:assembleRelease")
-	templateApk.set(project(":runtime").layout.buildDirectory.file("outputs/apk/release/runtime-release-unsigned.apk"))
-	browserTemplateApk.set(project(":runtime-ui").layout.buildDirectory.file("outputs/apk/release/runtime-ui-release-unsigned.apk"))
-	outputDirectory.set(layout.buildDirectory.dir("generated/templateAssets"))
-}
+val template =
+	tasks.register<StageRuntimeTemplate>("copyRuntimeTemplate") {
+		dependsOn(":runtime:assembleRelease", ":runtime-ui:assembleRelease")
+		templateApk.set(project(":runtime").layout.buildDirectory.file("outputs/apk/release/runtime-release-unsigned.apk"))
+		browserTemplateApk.set(project(":runtime-ui").layout.buildDirectory.file("outputs/apk/release/runtime-ui-release-unsigned.apk"))
+		outputDirectory.set(layout.buildDirectory.dir("generated/templateAssets"))
+	}
 androidComponents.onVariants(androidComponents.selector().all()) { variant ->
 	variant.sources.assets?.addGeneratedSourceDirectory(template, StageRuntimeTemplate::outputDirectory)
 }
@@ -65,7 +72,9 @@ androidComponents.onVariants(androidComponents.selector().all()) { variant ->
  */
 abstract class AndroidApkSigner : DefaultTask() {
 	@get:Classpath abstract val sourceJars: ConfigurableFileCollection
+
 	@get:OutputFile abstract val outputJar: RegularFileProperty
+
 	@TaskAction fun adapt() {
 		val destination = outputJar.get().asFile
 		destination.parentFile.mkdirs()
@@ -73,15 +82,24 @@ abstract class AndroidApkSigner : DefaultTask() {
 			ZipOutputStream(destination.outputStream()).use { output ->
 				while (true) {
 					val entry = input.nextEntry ?: break
-					if (entry.isDirectory || Regex("META-INF/.*\\.(SF|RSA|DSA|EC)").matches(entry.name)) continue
+					if (entry.isDirectory || Regex("META-INF/.*\\.(SF|RSA|DSA|EC)").matches(entry.name)) {
+						continue
+					}
 					val bytes = input.readBytes()
 					output.putNextEntry(ZipEntry(entry.name).apply { time = 0 })
-					output.write(if (entry.name.endsWith(".class")) adaptClass(bytes) else bytes)
+					output.write(
+						if (entry.name.endsWith(".class")) {
+							adaptClass(bytes)
+						} else {
+							bytes
+						},
+					)
 					output.closeEntry()
 				}
 			}
 		}
 	}
+
 	private fun adaptClass(bytes: ByteArray): ByteArray {
 		val input = DataInputStream(ByteArrayInputStream(bytes))
 		val buffer = ByteArrayOutputStream()
@@ -98,13 +116,43 @@ abstract class AndroidApkSigner : DefaultTask() {
 			val tag = input.readUnsignedByte()
 			output.writeByte(tag)
 			when (tag) {
-				1 -> output.writeUTF(input.readUTF().let { if (it == "getDeclaredAnnotation") "getAnnotation" else it })
-				3, 4 -> output.writeInt(input.readInt())
-				5, 6 -> { output.writeLong(input.readLong()); index++ }
-				7, 8, 16, 19, 20 -> output.writeShort(input.readUnsignedShort())
-				9, 10, 11, 12, 17, 18 -> output.writeInt(input.readInt())
-				15 -> { output.writeByte(input.readUnsignedByte()); output.writeShort(input.readUnsignedShort()) }
-				else -> error("Unknown class constant-pool tag $tag")
+				1 -> {
+					output.writeUTF(
+						input.readUTF().let {
+							if (it == "getDeclaredAnnotation") {
+								"getAnnotation"
+							} else {
+								it
+							}
+						},
+					)
+				}
+
+				3, 4 -> {
+					output.writeInt(input.readInt())
+				}
+
+				5, 6 -> {
+					output.writeLong(input.readLong())
+					index++
+				}
+
+				7, 8, 16, 19, 20 -> {
+					output.writeShort(input.readUnsignedShort())
+				}
+
+				9, 10, 11, 12, 17, 18 -> {
+					output.writeInt(input.readInt())
+				}
+
+				15 -> {
+					output.writeByte(input.readUnsignedByte())
+					output.writeShort(input.readUnsignedShort())
+				}
+
+				else -> {
+					error("Unknown class constant-pool tag $tag")
+				}
 			}
 			index++
 		}
@@ -112,11 +160,15 @@ abstract class AndroidApkSigner : DefaultTask() {
 		return buffer.toByteArray()
 	}
 }
-val apksigSource by configurations.creating { isTransitive = false; isCanBeConsumed = false }
-val androidSigner = tasks.register<AndroidApkSigner>("prepareAndroidApkSigner") {
-	sourceJars.from(apksigSource)
-	outputJar.set(layout.buildDirectory.file("generated/signing/apksig-api21.jar"))
+val apksigSource by configurations.creating {
+	isTransitive = false
+	isCanBeConsumed = false
 }
+val androidSigner =
+	tasks.register<AndroidApkSigner>("prepareAndroidApkSigner") {
+		sourceJars.from(apksigSource)
+		outputJar.set(layout.buildDirectory.file("generated/signing/apksig-api21.jar"))
+	}
 
 dependencies {
 	implementation(project(":core"))
